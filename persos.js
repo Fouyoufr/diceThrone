@@ -1,5 +1,5 @@
 function log(text) {
-    document.getElementById('log').innerText += text+'<br/>'
+    document.getElementById('log').innerHTML += '<p>'+text+'</p>'
     console.log(text)
 }
 
@@ -14,7 +14,20 @@ function setHoriz(item) {item.classList.remove('vertical');item.classList.add('h
 function touchStart(event) {
   log("touchStart.");
   touches = Array.from(event.touches);
+  Array.from(event.touches).forEach(storePlayers);
   touches.forEach(touchDisplay);
+}
+
+function storePlayers(touch) {
+  if (!touch.identifier in players) {
+    players[touch.identifier]={top:touch.clientY,left:touch.clientX,id:'player'+touch.identifier,heros:0}} else {
+    players[touch.identifier].top=touch.clientY
+    players[touch.identifier].left=touch.clientX
+    }
+
+// or remove it
+//delete map[key1];
+    
 }
   
 function newPlayer(id) {
@@ -48,5 +61,6 @@ window.addEventListener("contextmenu", function(e) { e.preventDefault(); })
 persos = [{"nom":"barbare","pic":1,"sais":1, "cbt":1, "niv":1},{"nom":"Elfe lunaire","pic":2,"sais":1,"cbt":1,"niv":2},{"nom":"Moine","pic":3,"sais":1,"cbt":2,"niv":4},{"nom":"Paladin","pic":4,"sais":1,"cbt":2,"niv":5},{"nom":"Pyromancienne","pic":5,"sais":1,"cbt":3,"niv":3},{"nom":"Voleur de l'ombre","pic":6,"sais":1,"cbt":3,"niv":5},{"nom":"Tréant","pic":7,"sais":1,"cbt":4,"niv":6},{"nom":"Ninja","pic":8,"sais":1,"cbt":4,"niv":2},{"nom":"As de la gâchette","pic":9,"sais":2,"cbt":1,"niv":2},{"nom":"Samouraï","pic":10,"sais":2,"cbt":1,"niv":3},{"nom":"Tacticien","pic":11,"sais":2,"cbt":2,"niv":5},{"nom":"Chasseresse","pic":12,"sais":2,"cbt":2,"niv":5},{"nom":"Pirate maudite","pic":13,"sais":2,"cbt":3,"niv":4},{"nom":"Artificier","pic":14,"sais":2,"cbt":3,"niv":6},{"nom":"Séraphine","pic":15,"sais":2,"cbt":4,"niv":3},{"nom":"Reine vampire","pic":16,"sais":2,"cbt":4,"niv":4}]
 choix = persos
 touches = []
+players = {}
 choisis = []
 firstPlayer = 99
