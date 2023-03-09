@@ -1,5 +1,5 @@
 function log(text) {
-    document.getElementById('log').innerText += text
+    document.getElementById('log').innerText += text+'<br/>'
     console.log(text)
 }
 
@@ -19,10 +19,10 @@ function touchStart(event) {
   
 function newPlayer(id) {
 //Création d'un objet
-log('nouvel objet')
 do {random = Math.floor(Math.random()*choix.length);}
 while (choisis.includes(choix[random],0))
 choisis.push(choix[random])
+log('nouvel objet : '+choix[random].nom)
 if (firstPlayer != 99) document.getElementById('player'+id).classList.remove('firstPlayer');
 firstPlayer = touches[Math.floor(Math.random()*touches.length)].identifier;
 newItem = document.createElement('img')
