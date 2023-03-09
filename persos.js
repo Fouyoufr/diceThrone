@@ -7,6 +7,7 @@ function screenOrient() {
   if (firstPlayer!=99) {document.getElementById('player'+firstPlayer).classList.add('firstPlayer');}
   if (screen.availHeight > screen.availWidth) {document.querySelectorAll('.doigt').forEach(setVert);}
   else {document.querySelectorAll('.doigt').forEach(setHoriz);}}
+
  
 function setVert(item) {item.classList.remove('horizontal');item.classList.add('vertical');}
 function setHoriz(item) {item.classList.remove('vertical');item.classList.add('horizontal');}
@@ -14,44 +15,36 @@ function setHoriz(item) {item.classList.remove('vertical');item.classList.add('h
 function touchStart(event) {
   log("touchStart.");
   touches = Array.from(event.touches);
-  Array.from(event.touches).forEach(storePlayers);
-  touches.forEach(touchDisplay);
+  Array.from(event.touches).forEach(storePlayer);
 }
 
-function storePlayers(touch) {
-  if (!touch.identifier in players) {
-    players[touch.identifier]={top:touch.clientY,left:touch.clientX,id:'player'+touch.identifier,heros:0}} else {
-    players[touch.identifier].top=touch.clientY
-    players[touch.identifier].left=touch.clientX
-    }
-
+function storePlayer(touch) {
+console.log(touch.identifier in players)
+  if ('player'+touch.identifier in players) {
+    players['player'+touch.identifier].top=touch.clientY
+    players['player'+touch.identifier].left=touch.clientX}
+  else {
+    //New player
+    do {random = Math.floor(Math.random()*choix.length);}
+    while (choisis.includes(choix[random],0))
+    choisis.push(choix[random])
+    log('nouvel objet : '+choix[random].nom)
+    players['player'+touch.identifier]={top:touch.clientY,left:touch.clientX,id:'player'+touch.identifier,heros:choix[random].pic}
+    if (firstPlayer != 99) document.getElementById('player'+id).classList.remove('firstPlayer');
+    firstPlayer = touches[Math.floor(Math.random()*touches.length)].identifier;
+    newItem = document.createElement('img')
+    newItem.src='pics/'+choix[random].pic+'.png';
+    newItem.id='player'+touch.identifier;
+    newItem.className='doigt';
+    if (screen.availHeight > screen.availWidth) newItem.classList.add('vertical'); else newItem.classList.add('horizontal')
+    document.body.appendChild(newItem);}
+    item = document.getElementById('player'+touch.identifier)
+    item.style.top = touch.clientY - (item.height)/2;
+    item.style.left = touch.clientX - (item.width)/2
 // or remove it
 //delete map[key1];
-    
 }
-  
-function newPlayer(id) {
-//Création d'un objet
-do {random = Math.floor(Math.random()*choix.length);}
-while (choisis.includes(choix[random],0))
-choisis.push(choix[random])
-log('nouvel objet : '+choix[random].nom)
-if (firstPlayer != 99) document.getElementById('player'+id).classList.remove('firstPlayer');
-firstPlayer = touches[Math.floor(Math.random()*touches.length)].identifier;
-newItem = document.createElement('img')
-newItem.src='pics/'+choix[random].pic+'.png';
-newItem.id='player'+id;
-newItem.className='doigt';
-document.body.appendChild(newItem);
-screenOrient();
-}
-  
-function touchDisplay(touche) {
-if (document.getElementById('player'+touche.identifier)==null) newPlayer(touche.identifier);
-item = document.getElementById('player'+touche.identifier)
-item.style.top = touche.clientY - (item.height)/2;
-item.style.left = touche.clientX - (item.width)/2;
-}
+
   
 document.addEventListener("DOMContentLoaded", screenOrient);
 screen.orientation.addEventListener('change', screenOrient);
