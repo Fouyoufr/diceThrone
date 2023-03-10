@@ -29,12 +29,12 @@ else {
   choisis.push(choix[random])
   log('nouvel objet : '+JSON.stringify(choix[random]))
   players['player'+touch.identifier]={top:touch.clientY,left:touch.clientX,id:'player'+touch.identifier,heros:choix[random].pic}
-  if (firstPlayer != 99) document.getElementById('player'+id).classList.remove('firstPlayer');
-  firstPlayer = touches[Math.floor(Math.random()*touches.length)].identifier;
+  if (firstPlayer != 99) document.getElementById('player'+id).classList.remove('firstPlayer')
+  firstPlayer = touches[Math.floor(Math.random()*touches.length)].identifier
   newItem = document.createElement('img')
-  newItem.src='pics/'+choix[random].pic+'.png';
-  newItem.id='player'+touch.identifier;
-  newItem.className='doigt';
+  newItem.src='pics/'+choix[random].pic+'.png'
+  newItem.id='player'+touch.identifier
+  newItem.className='doigt'
   if (screen.availHeight > screen.availWidth) newItem.classList.add('vertical'); else newItem.classList.add('horizontal')
   document.body.appendChild(newItem)
   log(newItem.id)}
