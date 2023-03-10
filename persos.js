@@ -21,7 +21,9 @@ function storePlayer(touch) {
 console.log(touch.identifier in players)
 if ('player'+touch.identifier in players) {
   players['player'+touch.identifier].top=touch.clientY
-  players['player'+touch.identifier].left=touch.clientX}
+  players['player'+touch.identifier].left=touch.clientX
+  item = document.getElementById('player'+touch.identifier)
+}
 else {
   //New player
   do {random = Math.floor(Math.random()*choix.length);}
@@ -31,18 +33,15 @@ else {
   players['player'+touch.identifier]={top:touch.clientY,left:touch.clientX,id:'player'+touch.identifier,heros:choix[random].pic}
   if (firstPlayer != 99) document.getElementById('player'+id).classList.remove('firstPlayer')
   firstPlayer = touches[Math.floor(Math.random()*touches.length)].identifier
-  newItem = document.createElement('img')
-  newItem.src='pics/'+choix[random].pic+'.png'
-  newItem.id='player'+touch.identifier
-  newItem.className='doigt'
-  if (screen.availHeight > screen.availWidth) newItem.classList.add('vertical'); else newItem.classList.add('horizontal')
-  document.body.appendChild(newItem)
-  log(newItem.id)}
-
-  item = document.getElementById('player'+touch.identifier)
-  item.style.top = touch.clientY - (item.height)/2
-  item.style.left = touch.clientX - (item.width)/2
-
+  item = document.createElement('img')
+  item.src='pics/'+choix[random].pic+'.png'
+  item.id='player'+touch.identifier
+  item.className='doigt'
+  if (screen.availHeight > screen.availWidth) item.classList.add('vertical'); else item.classList.add('horizontal')
+  document.body.appendChild(item)}
+log(newItem.id)
+item.style.top = touch.clientY - (item.height)/2
+item.style.left = touch.clientX - (item.width)/2
 }
 
 
