@@ -39,7 +39,7 @@ else {
   item.className='doigt'
   if (screen.availHeight > screen.availWidth) item.classList.add('vertical'); else item.classList.add('horizontal')
   document.body.appendChild(item)}
-log(newItem.id)
+log(item.id)
 item.style.top = touch.clientY - (item.height)/2
 item.style.left = touch.clientX - (item.width)/2
 }
