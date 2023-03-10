@@ -31,7 +31,7 @@ else {
   log('nouvel objet : '+JSON.stringify(choix[random]))
   players['player'+touch.identifier]={top:touch.clientY,left:touch.clientX,id:'player'+touch.identifier,heros:choix[random].pic}
   if (firstPlayer != 99) document.getElementById('player'+firstPlayer).classList.remove('firstPlayer')
-  firstPlayer = touches[Math.floor(Math.random()*touches.length)].identifier
+  firstPlayer = touches[Math.floor(Math.random()*touches.length)-1].identifier
   log('firstPlayer id : '+firstPlayer)
   item = document.createElement('img')
   item.src='pics/'+choix[random].pic+'.png'
