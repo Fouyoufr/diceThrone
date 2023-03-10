@@ -1,0 +1,5 @@
+body {background-color: brown;}
+img.player {border-radius: 50%;aspect-ratio:1;object-fit:cover;position:absolute;}
+img.vertical {height:20%;}
+img.horizontal {width:20%;}
+img.firstPlayer {border : solid 10px lightgoldenrodyellow;}
