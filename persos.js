@@ -18,7 +18,6 @@ Array.from(event.touches).forEach(storePlayer);
 }
 
 function storePlayer(touch) {
-console.log(touch.identifier in players)
 if ('player'+touch.identifier in players) {
   players['player'+touch.identifier].top=touch.clientY
   players['player'+touch.identifier].left=touch.clientX
@@ -31,7 +30,7 @@ else {
   choisis.push(choix[random])
   log('nouvel objet : '+JSON.stringify(choix[random]))
   players['player'+touch.identifier]={top:touch.clientY,left:touch.clientX,id:'player'+touch.identifier,heros:choix[random].pic}
-  if (firstPlayer != 99) document.getElementById('player'+id).classList.remove('firstPlayer')
+  if (firstPlayer != 99) document.getElementById('player'+firstPlayer).classList.remove('firstPlayer')
   firstPlayer = touches[Math.floor(Math.random()*touches.length)].identifier
   log('firstPlayer id : '+firstPlayer)
   item = document.createElement('img')
