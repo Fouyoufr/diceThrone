@@ -17,7 +17,6 @@ Array.from(event.touches).forEach(storePlayer);
 }
 
 function storePlayer(touch) {
-  log('storePlayer')
 if ('player'+touch.identifier in players) {
   players['player'+touch.identifier].top=touch.clientY
   players['player'+touch.identifier].left=touch.clientX
@@ -39,8 +38,7 @@ else {
   item.className='doigt'
   if (screen.availHeight > screen.availWidth) item.classList.add('vertical'); else item.classList.add('horizontal')
   document.body.appendChild(item)}
-log(item.id)
-if (item.id == firstPlayer) {item.classList.add('firstPlayer');}
+if (item.id == 'player'+firstPlayer) {item.classList.add('firstPlayer');}
 item.style.top = touch.clientY - (item.height)/2
 item.style.left = touch.clientX - (item.width)/2
 }
