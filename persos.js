@@ -1,3 +1,6 @@
+//Smartphone ou pas ?
+// 'ontouchstart' in window
+
 function screenOrient() {
 if (screen.availHeight > screen.availWidth) document.querySelectorAll('.player').forEach(setVert); else document.querySelectorAll('.player').forEach(setHoriz)}
 function setVert(item) {item.classList.remove('horizontal');item.classList.add('vertical')}
