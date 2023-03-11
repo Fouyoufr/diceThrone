@@ -7,7 +7,15 @@ function setHoriz(item) {item.classList.remove('vertical');item.classList.add('h
 
 function touchStart(event) {
 touches = Array.from(event.touches)
-Array.from(event.touches).forEach(storePlayer)
+Array.from(event.touches).forEach(storePlayer)}
+
+function touchEnd(event) {
+  if (touches.length>1) {
+    //Supprimer précédent premier joueur avant de nettoyer la liste
+    document.getElementById('player'+firstPlayer).classList.remove('firstPlayer')}
+  //Nettoyage des touches avant réaffichage
+  touches.forEach(clearPlayer)
+  touchStart(event);
 }
 
 function storePlayer(touch) {
@@ -39,6 +47,7 @@ item.style.left = touch.clientX - (item.width)/2
 document.addEventListener("DOMContentLoaded", screenOrient)
 screen.orientation.addEventListener('change', screenOrient)
 document.addEventListener('touchstart',touchStart)
+document.addEventListener('touchend',touchEnd)
 //Supprimer le click droit
 window.addEventListener("contextmenu", function(e) { e.preventDefault()})
 
