@@ -1,8 +1,3 @@
-function debug(text) {
-  document.getElementById('log').innerHTML += '<p>'+text+'</p>'
-  console.log(text)
-}
-
 function screenOrient() {
 if (screen.availHeight > screen.availWidth) {document.querySelectorAll('.player').forEach(setVert);}
 else {document.querySelectorAll('.player').forEach(setHoriz);}}
@@ -26,15 +21,15 @@ else {
   while (choisis.includes(choix[random],0))
   choisis.push(choix[random])
   players['player'+touch.identifier]={top:touch.clientY,left:touch.clientX,id:'player'+touch.identifier,heros:choix[random].pic}
-  if (firstPlayer != 99) document.getElementById('player'+firstPlayer).classList.remove('firstPlayer')
-  firstPlayer = touches[Math.floor(Math.random()*touches.length)].identifier
   item = document.createElement('img')
   item.src='pics/'+choix[random].pic+'.png'
   item.id='player'+touch.identifier
   item.className='player'
+  if (firstPlayer != 99) document.getElementById('player'+firstPlayer).classList.remove('firstPlayer')
+  firstPlayer = touches[Math.floor(Math.random()*touches.length)].identifier
+  if (firstPlayer == touch.identifier) item.classList.add('firstPlayer'); else document.getElementById('player'+firstPlayer).classList.add('firstPlayer')
   if (screen.availHeight > screen.availWidth) item.classList.add('vertical'); else item.classList.add('horizontal')
   document.body.appendChild(item)}
-if (item.id == 'player'+firstPlayer) {item.classList.add('firstPlayer');}
 item.style.top = touch.clientY - (item.height)/2
 item.style.left = touch.clientX - (item.width)/2
 }
