@@ -47,14 +47,14 @@ else {
   item.src='pics/'+choix[random].pic+'.png'
   item.id='player'+touch.identifier
   item.className='player'
-  firstPlayerList=document.getElementsByClassName('firstPlayer')
-  if(firstPlayerList.length>0) firstPlayerList[0].classList.remove('firstPlayer')
-  firstPlayer = touches[Math.floor(Math.random()*touches.length)].identifier
-  if (firstPlayer == touch.identifier) item.classList.add('firstPlayer'); else document.getElementById('player'+firstPlayer).classList.add('firstPlayer')
+  firstPlayer.classList.remove('firstPlayer')
+  firstPlayerId = touches[Math.floor(Math.random()*touches.length)].identifier
+  if (firstPlayerId == touch.identifier) firstPlayer = item; else firstPlayer = document.getElementById('player'+firstPlayerId)
   if (screen.availHeight > screen.availWidth) item.classList.add('vertical'); else item.classList.add('horizontal')
   document.body.appendChild(item)}
 item.style.top = touch.clientY - (item.height)/2
 item.style.left = touch.clientX - (item.width)/2
+firstPlayer.classList.add('firstPlayer')
 }
 
 
