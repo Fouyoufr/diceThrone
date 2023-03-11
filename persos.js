@@ -19,12 +19,9 @@ function touchEnd(event) {
     document.getElementById('player'+firstPlayer).classList.remove('firstPlayer')}
   //Nettoyage des touches avant réaffichage
   touches.forEach(clearPlayer)
+  players = {}
   touches = Array.from(event.touches)
   touchStart(event)
-  if(touches.length>0) {
-    //reselection du premier joueur
-    firstPlayer = touches[Math.floor(Math.random()*touches.length)].identifier
-   document.getElementById('player'+firstPlayer).classList.add('firstPlayer')}
 }
 
 function touchMove(event) {
