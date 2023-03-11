@@ -9,14 +9,21 @@ function playersChange(event) {
 event.preventDefault
 //On commence par faire le ménage
 players.forEach(clearPlayer)
+if (players.length > maxPlayers.length) maxPlayers = players
 players=[]
 choisis=[]
 Array.from(event.touches).forEach(copyTouch)
-if (players.length>1)  players[Math.floor(Math.random()*players.length)].classList.add('firstPlayer')}
-
-function clearPlayer(player) {
-player.parentNode.removeChild(player)
+if (players.length>1)  {
+  firstId=Math.floor(Math.random()*players.length)
+  document.getElementById('player'+firstId).classList.add('firstPlayer')
+  document.getElementById('maxPlayer'+firstId).classList.add('firstPlayer')
 }
+if (players.length==0 && maxPlayers.length!=0) {
+  //Affichage du résultat
+}
+}
+
+function clearPlayer(player) {player.parentNode.removeChild(player)}
 
 function copyTouch(touch) {
 do {random = Math.floor(Math.random()*choix.length)}
@@ -25,11 +32,20 @@ choisis.push(choix[random])
 newPlayer = document.createElement('img');
 newPlayer.src = 'pics/'+choix[random].pic+'.png'
 newPlayer.id = 'player'+touch.identifier
-newPlayer.className = 'player vertical'
+newPlayer.className = 'player'
 document.body.appendChild(newPlayer)
 newPlayer.style.top = touch.clientY - (newPlayer.height)/2
 newPlayer.style.left = touch.clientX - (newPlayer.width)/2
-players.push(newPlayer)}
+players.push(newPlayer)
+if (players.length > maxPlayers.length) {
+  //Préparation du résultat
+  maxPlayer = document.createElement('img');
+  maxPlayer.src = 'pics/'+choix[random].pic+'.png'
+  maxPlayer.id = 'maxPlayer'+touch.identifier
+  maxPlayer.className = 'player'
+  maxPlayer.style.top = touch.clientY - (newPlayer.height)/2
+  maxPlayer.style.left = touch.clientX - (newPlayer.width)/2}
+}
 
 
 
@@ -60,3 +76,4 @@ persos = [{"nom":"barbare","pic":1,"sais":1, "cbt":1, "niv":1},{"nom":"Elfe luna
 ]
 choix = persos
 players = []
+maxPlayers = []
