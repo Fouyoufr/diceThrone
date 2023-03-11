@@ -2,7 +2,7 @@
 // 'ontouchstart' in window
 
 function fullScreen(event) {
-  if (!document.fullscreen) document.body.requestFullscreen();
+  if ((!document.fullscreen) && ('ontouchstart' in window)) document.body.requestFullscreen();
 }
 
 function playersChange(event) {
@@ -48,20 +48,18 @@ if (players.length > maxPlayers.length) {
 
 function touchMove(event) {
 event.preventDefault
-Array.from(event.changedTouches).forEach(moveTouch)
-}
+Array.from(event.changedTouches).forEach(moveTouch)}
 
 function moveTouch(touch) {
 player = document.getElementById('player'+touch.identifier)
 player.style.top = touch.clientY - (newPlayer.height)/2
-player.style.left = touch.clientX - (newPlayer.width)/2
-}
+player.style.left = touch.clientX - (newPlayer.width)/2}
 
 
 document.addEventListener('touchstart',playersChange)
 document.addEventListener('touchend',playersChange)
 document.addEventListener('touchmove',touchMove)
-document.addEventListener('onclik',fullScreen)
+document.addEventListener('click',fullScreen)
 //Supprimer le click droit
 window.addEventListener("contextmenu", function(e) { e.preventDefault()})
 
