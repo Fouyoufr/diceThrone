@@ -28,6 +28,7 @@ function touchEnd(event) {
 }
 
 function touchMove(event) {
+  event.preventDefault
   touchStart(event)
 }
 
