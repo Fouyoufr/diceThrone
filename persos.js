@@ -1,11 +1,11 @@
 function screenOrient() {
-if (screen.availHeight > screen.availWidth) {document.querySelectorAll('.player').forEach(setVert)}
-else {document.querySelectorAll('.player').forEach(setHoriz)}
-if (window.innerHeight != screen.height) document.body.requestFullscreen()}
+if (screen.availHeight > screen.availWidth) document.querySelectorAll('.player').forEach(setVert); else document.querySelectorAll('.player').forEach(setHoriz)}
 function setVert(item) {item.classList.remove('horizontal');item.classList.add('vertical')}
 function setHoriz(item) {item.classList.remove('vertical');item.classList.add('horizontal')}
 
 function touchStart(event) {
+event.preventDefault
+if (window.innerHeight != screen.height) document.body.requestFullscreen()
 touches = Array.from(event.touches)
 Array.from(event.touches).forEach(storePlayer)}
 
