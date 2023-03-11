@@ -7,17 +7,14 @@ function fullScreen(event) {
 
 function playersChange(event) {
 event.preventDefault
-//On commence par faire le ménage
+//On commence par faire le ménage (après avoir sauvegardé le premier joueur le cas échéant)
+
 players.forEach(clearPlayer)
 if (players.length > maxPlayers.length) maxPlayers = players
 players=[]
 choisis=[]
 Array.from(event.touches).forEach(copyTouch)
-if (players.length>1)  {
-  firstId=Math.floor(Math.random()*players.length)
-  document.getElementById('player'+firstId).classList.add('firstPlayer')
-  document.getElementById('maxPlayer'+firstId).classList.add('firstPlayer')
-}
+if (players.length>1)  document.getElementById('player'+Math.floor(Math.random()*players.length)).classList.add('firstPlayer')
 if (players.length==0 && maxPlayers.length!=0) {
   //Affichage du résultat
 }
