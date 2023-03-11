@@ -26,7 +26,7 @@ function touchMove(event) {
 
 function clearPlayer(touch) {
   player = document.getElementById('player'+touch.identifier)
-  elem.parentNode.removeChild(player)
+  player.parentNode.removeChild(player)
 }
 
 function storePlayer(touch) {
