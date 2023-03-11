@@ -10,16 +10,13 @@ function touchStart(event) {
   event.preventDefault
   //if (!document.fullscreen) document.body.requestFullscreen();
   touches = Array.from(event.touches)
-  Array.from(event.touches).forEach(storePlayer)}
+  touches.forEach(storePlayer)}
 
 function touchEnd(event) {
   event.preventDefault
-  if (touches.length>1) {
-    //Supprimer précédent premier joueur avant de nettoyer la liste
-    document.getElementById('player'+firstPlayer).classList.remove('firstPlayer')}
-  //Nettoyage des touches avant réaffichage
   touches.forEach(clearPlayer)
   players = {}
+  choisis = []
   touches = Array.from(event.touches)
   touchStart(event)
 }
@@ -50,7 +47,8 @@ else {
   item.src='pics/'+choix[random].pic+'.png'
   item.id='player'+touch.identifier
   item.className='player'
-  if (firstPlayer != 99) document.getElementById('player'+firstPlayer).classList.remove('firstPlayer')
+  firstPlayerList=document.getElementsByClassName('firstPlayer')
+  if(firstPlayerList.length>0) firstPlayerList[0].classList.remove('firstPlayer')
   firstPlayer = touches[Math.floor(Math.random()*touches.length)].identifier
   if (firstPlayer == touch.identifier) item.classList.add('firstPlayer'); else document.getElementById('player'+firstPlayer).classList.add('firstPlayer')
   if (screen.availHeight > screen.availWidth) item.classList.add('vertical'); else item.classList.add('horizontal')
@@ -78,4 +76,4 @@ choix = persos
 touches = []
 players = {}
 choisis = []
-firstPlayer = 99
+firstPlayer = document.createElement('img')
