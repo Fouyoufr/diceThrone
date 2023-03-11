@@ -4,19 +4,24 @@ function setVert(item) {item.classList.remove('horizontal');item.classList.add('
 function setHoriz(item) {item.classList.remove('vertical');item.classList.add('horizontal')}
 
 function touchStart(event) {
-event.preventDefault
-if (window.innerHeight != screen.height) document.body.requestFullscreen()
-touches = Array.from(event.touches)
-Array.from(event.touches).forEach(storePlayer)}
+  event.preventDefault
+  if (window.innerHeight != screen.height) document.body.requestFullscreen();
+  touches = Array.from(event.touches)
+  Array.from(event.touches).forEach(storePlayer)}
 
 function touchEnd(event) {
+  event.preventDefault
   if (touches.length>1) {
     //Supprimer précédent premier joueur avant de nettoyer la liste
     document.getElementById('player'+firstPlayer).classList.remove('firstPlayer')}
   //Nettoyage des touches avant réaffichage
   touches.forEach(clearPlayer)
-  touchStart(event);
+  touches = Array.from(event.touches)
+  touchStart(event)
 }
+
+function clearPlayer(touch) {
+  document.getElementById('player'+touch.identifier).remove}
 
 function storePlayer(touch) {
 if ('player'+touch.identifier in players) {
