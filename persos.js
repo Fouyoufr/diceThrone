@@ -1,6 +1,10 @@
 //Smartphone ou pas ?
 // 'ontouchstart' in window
 
+function fullScreen(event) {
+  if (!document.fullscreen) document.body.requestFullscreen();
+}
+
 function screenOrient() {
 if (screen.availHeight > screen.availWidth) document.querySelectorAll('.player').forEach(setVert); else document.querySelectorAll('.player').forEach(setHoriz)}
 function setVert(item) {item.classList.remove('horizontal');item.classList.add('vertical')}
@@ -8,7 +12,6 @@ function setHoriz(item) {item.classList.remove('vertical');item.classList.add('h
 
 function touchStart(event) {
   event.preventDefault
-  //if (!document.fullscreen) document.body.requestFullscreen();
   touches = Array.from(event.touches)
   touches.forEach(storePlayer)}
 
@@ -64,6 +67,7 @@ screen.orientation.addEventListener('change', screenOrient)
 document.addEventListener('touchstart',touchStart)
 document.addEventListener('touchend',touchEnd)
 document.addEventListener('touchmove',touchMove)
+document.addEventListener('onlcik',fullScreen)
 //Supprimer le click droit
 window.addEventListener("contextmenu", function(e) { e.preventDefault()})
 
