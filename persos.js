@@ -1,12 +1,13 @@
 function screenOrient() {
-if (screen.availHeight > screen.availWidth) {document.querySelectorAll('.player').forEach(setVert);}
-else {document.querySelectorAll('.player').forEach(setHoriz);}}
-function setVert(item) {item.classList.remove('horizontal');item.classList.add('vertical');}
-function setHoriz(item) {item.classList.remove('vertical');item.classList.add('horizontal');}
+if (screen.availHeight > screen.availWidth) {document.querySelectorAll('.player').forEach(setVert)}
+else {document.querySelectorAll('.player').forEach(setHoriz)}
+if (window.innerHeight != screen.height) document.body.requestFullscreen()}
+function setVert(item) {item.classList.remove('horizontal');item.classList.add('vertical')}
+function setHoriz(item) {item.classList.remove('vertical');item.classList.add('horizontal')}
 
 function touchStart(event) {
-touches = Array.from(event.touches);
-Array.from(event.touches).forEach(storePlayer);
+touches = Array.from(event.touches)
+Array.from(event.touches).forEach(storePlayer)
 }
 
 function storePlayer(touch) {
@@ -17,7 +18,7 @@ if ('player'+touch.identifier in players) {
 }
 else {
   //New player
-  do {random = Math.floor(Math.random()*choix.length);}
+  do {random = Math.floor(Math.random()*choix.length)}
   while (choisis.includes(choix[random],0))
   choisis.push(choix[random])
   players['player'+touch.identifier]={top:touch.clientY,left:touch.clientX,id:'player'+touch.identifier,heros:choix[random].pic}
@@ -35,11 +36,11 @@ item.style.left = touch.clientX - (item.width)/2
 }
 
 
-document.addEventListener("DOMContentLoaded", screenOrient);
-screen.orientation.addEventListener('change', screenOrient);
-document.addEventListener('touchstart',touchStart);
+document.addEventListener("DOMContentLoaded", screenOrient)
+screen.orientation.addEventListener('change', screenOrient)
+document.addEventListener('touchstart',touchStart)
 //Supprimer le click droit
-window.addEventListener("contextmenu", function(e) { e.preventDefault(); })
+window.addEventListener("contextmenu", function(e) { e.preventDefault()})
 
 persos = [{"nom":"barbare","pic":1,"sais":1, "cbt":1, "niv":1},{"nom":"Elfe lunaire","pic":2,"sais":1,"cbt":1,"niv":2},
 {"nom":"Moine","pic":3,"sais":1,"cbt":2,"niv":4},{"nom":"Paladin","pic":4,"sais":1,"cbt":2,"niv":5},
