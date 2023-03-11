@@ -5,7 +5,7 @@ function setHoriz(item) {item.classList.remove('vertical');item.classList.add('h
 
 function touchStart(event) {
   event.preventDefault
-  if (window.innerHeight != screen.height) document.body.requestFullscreen();
+  //if (!document.fullscreen) document.body.requestFullscreen();
   touches = Array.from(event.touches)
   Array.from(event.touches).forEach(storePlayer)}
 
@@ -20,8 +20,14 @@ function touchEnd(event) {
   touchStart(event)
 }
 
+function touchMove(event) {
+  touchStart(event)
+}
+
 function clearPlayer(touch) {
-  document.getElementById('player'+touch.identifier).remove}
+  player = document.getElementById('player'+touch.identifier)
+  elem.parentNode.removeChild(player)
+}
 
 function storePlayer(touch) {
 if ('player'+touch.identifier in players) {
@@ -53,6 +59,7 @@ document.addEventListener("DOMContentLoaded", screenOrient)
 screen.orientation.addEventListener('change', screenOrient)
 document.addEventListener('touchstart',touchStart)
 document.addEventListener('touchend',touchEnd)
+document.addEventListener('touchmove',touchMove)
 //Supprimer le click droit
 window.addEventListener("contextmenu", function(e) { e.preventDefault()})
 
