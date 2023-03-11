@@ -21,9 +21,10 @@ function touchEnd(event) {
   touches.forEach(clearPlayer)
   touches = Array.from(event.touches)
   touchStart(event)
-  //reselection du premier joueur
-  firstPlayer = touches[Math.floor(Math.random()*touches.length)].identifier
- document.getElementById('player'+firstPlayer).classList.add('firstPlayer')
+  if(touches.length>0) {
+    //reselection du premier joueur
+    firstPlayer = touches[Math.floor(Math.random()*touches.length)].identifier
+   document.getElementById('player'+firstPlayer).classList.add('firstPlayer')}
 }
 
 function touchMove(event) {
