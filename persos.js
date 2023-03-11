@@ -50,6 +50,7 @@ else {
   firstPlayer.classList.remove('firstPlayer')
   firstPlayerId = touches[Math.floor(Math.random()*touches.length)].identifier
   if (firstPlayerId == touch.identifier) firstPlayer = item; else firstPlayer = document.getElementById('player'+firstPlayerId)
+  console.log(firstPlayer)
   if (screen.availHeight > screen.availWidth) item.classList.add('vertical'); else item.classList.add('horizontal')
   document.body.appendChild(item)}
 item.style.top = touch.clientY - (item.height)/2
