@@ -58,10 +58,14 @@ player.style.top = touch.clientY - (newPlayer.height)/2
 player.style.left = touch.clientX - (newPlayer.width)/2}
 
 //Gestion du type de périphérique (mobile/autre) et de l'orientation de l'écran sur mobile
-mobVerScreen=document.getElementById('mobile-vertical')
-mobHorScreen=document.getElementById('mobile-horizontal')
-compScreen=document.getElementById('ordinateur')
+mobHorScreen = null
+mobVerScreen = null
+compScreen = null
+isMobile = false
 window.addEventListener("load", () => {
+  mobVerScreen = document.getElementById('mobile-vertical')
+  mobHorScreen = document.getElementById('mobile-horizontal')
+  compScreen = document.getElementById('ordinateur')
   isMobile = navigator.userAgent.toLowerCase().match(/mobile/i)
   if (isMobile) {
     console.log("Is mobile device")
