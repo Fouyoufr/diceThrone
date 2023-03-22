@@ -1,11 +1,8 @@
-//Smartphone ou pas ?
-// 'ontouchstart' in window
-
 function fullScreen(event) {if ((!document.fullscreen) && ('ontouchstart' in window)) document.body.requestFullscreen();}
 
 function screenOrient() {
   console.log ('screenOrient')
-  if (Screen.availHeight > screen.availWidth) {
+  if (screen.availHeight > screen.availWidth) {
     mobVerScreen.style.display = 'block'
     mobHorScreen.style.display = 'none'}
   else {
