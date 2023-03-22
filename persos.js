@@ -69,16 +69,14 @@ window.addEventListener("load", () => {
   compScreen = document.getElementById('ordinateur')
   isMobile = navigator.userAgent.toLowerCase().match(/mobile/i)
   if (isMobile) {
-    console.log("Is mobile device")
+    screenOrient
     mobVerScreen.addEventListener('touchstart',playersChange)
     mobVerScreen.addEventListener('touchend',playersChange)
     mobVerScreen.addEventListener('touchmove',touchMove)
     mobVerScreen.addEventListener('click',fullScreen)
-    document.addEventListener("DOMContentLoaded", screenOrient)
     screen.orientation.addEventListener('change', screenOrient)
     compScreen.style.display='none'}
   else {
-    console.log("Not mobile device")
     mobVerScreen.style.display='none';
     mobHorScreen.style.display='none';
     compScreen.style.display='block';}
