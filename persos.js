@@ -4,6 +4,7 @@
 function fullScreen(event) {if ((!document.fullscreen) && ('ontouchstart' in window)) document.body.requestFullscreen();}
 
 function screenOrient() {
+  console.log ('sreeenOrient')
   if (screen.availHeight > screen.availWidth) {
     mobVerScreen.style.display = 'block'
     mobHorScreen.style.display = 'none'}
