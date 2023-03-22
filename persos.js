@@ -75,7 +75,7 @@ window.addEventListener("load", () => {
     mobVerScreen.addEventListener('click',fullScreen)
     document.addEventListener("DOMContentLoaded", screenOrient)
     screen.orientation.addEventListener('change', screenOrient)
-    compscreen.style.display='none'}
+    compScreen.style.display='none'}
   else {
     console.log("Not mobile device")
     mobVerScreen.style.display='none';
