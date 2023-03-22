@@ -4,8 +4,8 @@
 function fullScreen(event) {if ((!document.fullscreen) && ('ontouchstart' in window)) document.body.requestFullscreen();}
 
 function screenOrient() {
-  console.log ('sreeenOrient')
-  if (screen.availHeight > screen.availWidth) {
+  console.log ('screenOrient')
+  if (Screen.availHeight > screen.availWidth) {
     mobVerScreen.style.display = 'block'
     mobHorScreen.style.display = 'none'}
   else {
@@ -69,7 +69,7 @@ window.addEventListener("load", () => {
   compScreen = document.getElementById('ordinateur')
   isMobile = navigator.userAgent.toLowerCase().match(/mobile/i)
   if (isMobile) {
-    screenOrient
+    screenOrient()
     mobVerScreen.addEventListener('touchstart',playersChange)
     mobVerScreen.addEventListener('touchend',playersChange)
     mobVerScreen.addEventListener('touchmove',touchMove)
