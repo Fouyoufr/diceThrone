@@ -1,10 +1,15 @@
 //Smartphone ou pas ?
 // 'ontouchstart' in window
 
-function fullScreen(event) {
-  if ((!document.fullscreen) && ('ontouchstart' in window)) document.body.requestFullscreen();
-}
+function fullScreen(event) {if ((!document.fullscreen) && ('ontouchstart' in window)) document.body.requestFullscreen();}
 
+function screenOrient() {
+  if (screen.availHeight > screen.availWidth) {
+    mobVerScreen.style.display = 'block'
+    mobHorScreen.style.display = 'none'}
+  else {
+    mobVerScreen.style.display = 'none'
+    mobHorScreen.style.display = 'block'}}
 function playersChange(event) {
 event.preventDefault
 //On commence par faire le ménage (après avoir sauvegardé le premier joueur le cas échéant)
@@ -41,10 +46,7 @@ if (players.length > maxPlayers.length) {
   maxPlayer.id = 'maxPlayer'+touch.identifier
   maxPlayer.className = 'player'
   maxPlayer.style.top = touch.clientY - (newPlayer.height)/2
-  maxPlayer.style.left = touch.clientX - (newPlayer.width)/2}
-}
-
-
+  maxPlayer.style.left = touch.clientX - (newPlayer.width)/2}}
 
 function touchMove(event) {
 event.preventDefault
@@ -55,11 +57,28 @@ player = document.getElementById('player'+touch.identifier)
 player.style.top = touch.clientY - (newPlayer.height)/2
 player.style.left = touch.clientX - (newPlayer.width)/2}
 
+//Gestion du type de périphérique (mobile/autre) et de l'orientation de l'écran sur mobile
+mobVerScreen=document.getElementById('mobile-vertical')
+mobHorScreen=document.getElementById('mobile-horizontal')
+compScreen=document.getElementById('ordinateur')
+window.addEventListener("load", () => {
+  isMobile = navigator.userAgent.toLowerCase().match(/mobile/i)
+  if (isMobile) {
+    console.log("Is mobile device")
+    mobVerScreen.addEventListener('touchstart',playersChange)
+    mobVerScreen.addEventListener('touchend',playersChange)
+    mobVerScreen.addEventListener('touchmove',touchMove)
+    mobVerScreen.addEventListener('click',fullScreen)
+    document.addEventListener("DOMContentLoaded", screenOrient)
+    screen.orientation.addEventListener('change', screenOrient)
+    compscreen.style.display='none'}
+  else {
+    console.log("Not mobile device")
+    mobVerScreen.style.display='none';
+    mobHorScreen.style.display='none';
+    compScreen.style.display='block';}
+})
 
-document.addEventListener('touchstart',playersChange)
-document.addEventListener('touchend',playersChange)
-document.addEventListener('touchmove',touchMove)
-document.addEventListener('click',fullScreen)
 //Supprimer le click droit
 window.addEventListener("contextmenu", function(e) { e.preventDefault()})
 
