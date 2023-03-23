@@ -3,7 +3,6 @@ function fullScreen(event) {if ((!document.fullscreen) && ('ontouchstart' in win
 function options() {
   if(isMobile) {
       persos.forEach((perso)=>{
-      mobHorScreen.innerText+=perso.nom+'<br/>'
       persoChoice=document.createElement('input')
       persoChoice.type='checkbox'
       persoChoice.id='perso'+perso.pic
