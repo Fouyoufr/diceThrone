@@ -2,17 +2,18 @@ function fullScreen(event) {if ((!document.fullscreen) && ('ontouchstart' in win
 
 function options() {
   if(isMobile) {
-      heros.forEach((hero)=>{
+      persos.forEach((perso)=>{
       persoChoice=document.createElement('input')
       persoChoice.type='checkbox'
-      persoChoice.id='perso'+hero.pic
+      persoChoice.id='perso'+perso.pic
+      if (heros.include(perso)) persoChoice.checked=true
       persoChoiceLabel = document.createElement('label')
-      persoChoiceLabel.htmlFor='perso'+hero.pic
-      persoChoiceLabel.appendChild(document.createTextNode(hero.nom));
-      if (hero.sais==1) {
+      persoChoiceLabel.htmlFor='perso'+perso.pic
+      persoChoiceLabel.appendChild(document.createTextNode(perso.nom));
+      if (perso.sais==1) {
         document.getElementById('choixSaison1').appendChild(persoChoice)
         document.getElementById('choixSaison1').appendChild(persoChoiceLabel)}
-      else if (hero.sais==2) {
+      else if (perso.sais==2) {
         document.getElementById('choixSaison2').appendChild(persoChoice)
         document.getElementById('choixSaison2').appendChild(persoChoiceLabel)}
     })
@@ -96,6 +97,7 @@ window.addEventListener("load", () => {
     mobVerScreen.style.display='none';
     mobHorScreen.style.display='none';
     compScreen.style.display='block';}
+    options()
 })
 
 //Supprimer le click droit
@@ -113,4 +115,3 @@ maxPlayers = []
 //Si la variable locale n'existe pas : on y met tous les personnages par défaut
 if (localStorage.getItem('fouyDTHeros') === null) localStorage.setItem('fouyDTHeros',JSON.stringify(persos))
 heros=JSON.parse(window.localStorage.getItem('fouyDTHeros'));
-options()
