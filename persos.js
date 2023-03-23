@@ -6,7 +6,7 @@ function options() {
       persoChoice=document.createElement('input')
       persoChoice.type='checkbox'
       persoChoice.id='perso'+perso.pic
-      if (heros.include(perso)) persoChoice.checked=true
+      if (heros.includes(perso)) persoChoice.checked=true
       persoChoiceLabel = document.createElement('label')
       persoChoiceLabel.htmlFor='perso'+perso.pic
       persoChoiceLabel.appendChild(document.createTextNode(perso.nom));
