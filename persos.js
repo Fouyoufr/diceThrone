@@ -1,5 +1,21 @@
 function fullScreen(event) {if ((!document.fullscreen) && ('ontouchstart' in window)) document.body.requestFullscreen();}
 
+function options() {
+  if(isMobile) {
+      persos.forEach((perso)=>{
+      mobHorScreen.innerText+=perso.nom+'<br/>'
+      persoChoice=document.createElement('input')
+      persoChoice.type='checkbox'
+      persoChoice.id='perso'+perso.pic
+      persoChoiceLabel = document.createElement('label')
+      persoChoiceLabel.htmlFor='perso'+perso.pic
+      persoChoiceLabel.appendChild(document.createTextNode(perso.nom));
+      mobHorScreen.appendChild(persoChoice);
+      mobHorScreen.appendChild(persoChoiceLabel);
+    })
+  }
+}
+
 function screenOrient() {
   console.log ('screenOrient')
   if (screen.availHeight > screen.availWidth) {
