@@ -2,15 +2,19 @@ function fullScreen(event) {if ((!document.fullscreen) && ('ontouchstart' in win
 
 function options() {
   if(isMobile) {
-      persos.forEach((perso)=>{
+      heros.forEach((hero)=>{
       persoChoice=document.createElement('input')
       persoChoice.type='checkbox'
-      persoChoice.id='perso'+perso.pic
+      persoChoice.id='perso'+hero.pic
       persoChoiceLabel = document.createElement('label')
-      persoChoiceLabel.htmlFor='perso'+perso.pic
-      persoChoiceLabel.appendChild(document.createTextNode(perso.nom));
-      mobHorScreen.appendChild(persoChoice);
-      mobHorScreen.appendChild(persoChoiceLabel);
+      persoChoiceLabel.htmlFor='perso'+hero.pic
+      persoChoiceLabel.appendChild(document.createTextNode(hero.nom));
+      if (hero.sais==1) {
+        document.getElementById('choixSaison1').appendChild(persoChoice)
+        document.getElementById('choixSaison1').appendChild(persoChoiceLabel)}
+      else if (hero.sais==2) {
+        document.getElementById('choixSaison2').appendChild(persoChoice)
+        document.getElementById('choixSaison2').appendChild(persoChoiceLabel)}
     })
   }
 }
@@ -106,3 +110,7 @@ persos = [{"nom":"barbare","pic":1,"sais":1, "cbt":1, "niv":1},{"nom":"Elfe luna
 choix = persos
 players = []
 maxPlayers = []
+//Si la variable locale n'existe pas : on y met tous les personnages par défaut
+if (localStorage.getItem('fouyDTHeros') === null) localStorage.setItem('fouyDTHeros',JSON.stringify(persos))
+heros=JSON.parse(window.localStorage.getItem('fouyDTHeros'));
+options()
